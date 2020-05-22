@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GRE Flashcards</title>
+
+	<!-- Encoding -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Description -->
+    <meta name="description" content="A simple and easy to use GRE Flashcards application for building vocabulary .">
+
+    <!-- Tags -->
+    <meta property="article:tag" content="application">
+    <meta property="article:tag" content="app">
+    <meta property="article:tag" content="arabic">
+    <meta property="article:tag" content="levantine">
+    <meta property="article:tag" content="flashcards">
+    <meta property="article:tag" content="flash cards">
+    <meta property="article:tag" content="learning">
+
+    <!-- Facebook Open Graph tags -->
+    <meta property="og:title" content="Arabic Flashcards"/>
+    <meta property="og:site_name" content="Arabic Flashcards"/>
+    <meta property="og:image" content="http://arabic-flashcards.brettromero.com/static/img/cover-image.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://arabic-flashcards.brettromero.com" />
+    <meta property="og:description" content="A simple and easy to use Arabic Flashcards application for building vocabulary in (Levantine) Arabic." />
+
+    <!-- jQuery plugin -->
+    <script src="./static/script/jquery/jquery-3.1.1.min.js"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Font-awesome for sharing buttons -->
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<!-- Internal CSS -->
+	<link rel="stylesheet" type="text/css" href="./static/style/baseStyle.css">
+
+    <!-- Custom JavaScript -->
+    <script src="./static/data/public/data.js"></script>
+    <script src="./static/script/custom/onLoad.js"></script>
+
+	<!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-60963697-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+	<!-- Content -->
+	<div class="container-fluid">
+		<!-- Navbar -->
+		<div class="row">
+			<nav class="ccv" style="background-color:#222">
+				<div class="navbar-header" >
+					<a class="ccv2"  href=""><h1 style:"color:white">GRE Flashcards</h1></a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-right">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+				</div>
+				<div class="navbar-collapse collapse" id="collapse-right">
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a  href="hyperbole.html">Home</a></li>
+                        <li><a  href="contact_us.html">Contact us</a></li>
+                        <li><a id="about" data-toggle="modal" data-target="#aboutModal">About This Project</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> logout</a></li>
+
+						
+					</ul> <!-- navbar-collapse -->
+				</div>
+			</nav>
+		</div>
+        <!-- Page Content -->
+        <div class="row">
+            <!-- Tool Bar -->
+            <div class="col-md-2" id="toolbar">
+                <div class="row" style="text-align: center">
+                    <p class="toolbar-text">Front of Cards</p>
+                </div>
+                <div class="row">
+                    <div id="language-select" class="form-group">
+                        <select id="language-list" class="form-control eco-select"></select>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center">
+                    <p class="toolbar-text">Category</p>
+                </div>
+                <div class="row">
+                    <div id="category-select" class="form-group">
+                        <select id="category-list" class="form-control eco-select"></select>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center">
+                    <button type="button" class="btn btn-default" id="refresh-btn">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> New Cards
+                    </button>
+                </div>
+                <div class="row" style="text-align: center">
+                    <h3>Score</h3>
+                    <div class="row">
+                        <div class="col-xs-6" id="correct-count">
+                            <p>Correct</p>
+                        </div>
+                        <div class="col-xs-6" id="wrong-count">
+                            <p>Incorrect</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-default" id="reset-score">Reset Scores</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Flip Cards -->
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-6 card-div">
+                        <section class="card-container">
+                            <div class="card" id="card1">
+                                <div class="front"></div>
+                                <div class="back" id="card1-back">
+                                    <button type="button" class="btn btn-default correct-btn">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default wrong-btn">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-6 card-div">
+                        <section class="card-container">
+                            <div class="card" id="card2">
+                                <div class="front"></div>
+                                <div class="back" id="card2-back">
+                                    <button type="button" class="btn btn-default correct-btn">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default wrong-btn">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 card-div">
+                        <section class="card-container">
+                            <div class="card" id="card3">
+                                <div class="front"></div>
+                                <div class="back" id="card3-back">
+                                    <button type="button" class="btn btn-default correct-btn">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default wrong-btn">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-6 card-div">
+                        <section class="card-container">
+                            <div class="card" id="card4">
+                                <div class="front"></div>
+                                <div class="back" id="card4-back">
+                                    <button type="button" class="btn btn-default correct-btn">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default wrong-btn">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+		<div class="row">
+		    <footer>
+		        <div class="page-footer">
+		            <div class="container">
+		                <div class="row">
+		                    <div class="footer-col col-md-12">
+		                        <br>
+		                        <h4>Get in touch!</h4>
+		                        <!-- Twitter -->
+		                        <a href="#" data-toggle="tooltip" title="Twitter" target="_blank" class="share-btn twitter">
+		                            <i class="fa fa-twitter"></i>
+		                        </a>
+
+		                        <!-- Facebook -->
+		                        <a href="#" data-toggle="tooltip" title="Facebook" target="_blank" class="share-btn facebook">
+		                            <i class="fa fa-facebook"></i>
+		                        </a>
+
+		                        <!-- Page -->
+		                        <a href="hyperbole.html" data-toggle="tooltip" title="hyperbole" target="_blank" class="share-btn home">
+		                            <i class="fa fa-home"></i>
+		                        </a>
+		                        <br>
+                                <br>
+                                <br>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </footer>
+		</div>
+        <!-- About Modal -->
+    	<div class="row">
+    	    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="aboutModal" role="dialog">
+    	        <div class="modal-dialog">
+    	            <!-- Modal content-->
+    	            <div class="modal-content">
+    	                <div class="navbar-collapse modal-header">
+    	                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
+    	                    <h2 style="text-align: center">About This Project</h2>
+    	                </div>
+    	                <div class="modal-body">
+    						<p>This project was created to help people aspiring to get a good score in GRE verbal section.This is our NCP project - 4th year CSE at Amrita University , Coimbatore.</p>
+                            
+    					</div>
+    	            </div>
+    	        </div>
+    	    </div>
+    	</div>
+	</div>
+</body>
+</html>
